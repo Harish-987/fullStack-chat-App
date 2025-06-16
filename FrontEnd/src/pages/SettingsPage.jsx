@@ -1,6 +1,6 @@
+import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
 import { Send } from "lucide-react";
-import {THEMES} from '../constants/index.js'
 
 const PREVIEW_MESSAGES = [
   { id: 1, content: "Hey! How's it going?", isSent: false },
@@ -11,7 +11,7 @@ const SettingsPage = () => {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <div className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
+    <div className="min-h-screen w-full bg-base-300 px-4 pt-20 max-w-5xl mx-auto">
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold">Theme</h2>
@@ -28,7 +28,7 @@ const SettingsPage = () => {
               `}
               onClick={() => setTheme(t)}
             >
-              <div className={`relative h-8 w-full rounded-md overflow-hidden theme-${t}`} >
+              <div className="relative h-8 w-full rounded-md overflow-hidden" data-theme={t}>
                 <div className="absolute inset-0 grid grid-cols-4 gap-px p-1">
                   <div className="rounded bg-primary"></div>
                   <div className="rounded bg-secondary"></div>

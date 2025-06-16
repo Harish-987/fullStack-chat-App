@@ -102,8 +102,6 @@ export const useAuthStore = create((set,get) =>({
         socket.connect();
         set({socket:socket});
 
-
-        //userIds are sent from backend
         socket.on("getOnlineUsers",(userIds) => {
             set({onlineUsers:userIds});
         });
@@ -111,7 +109,7 @@ export const useAuthStore = create((set,get) =>({
     },
 
     disconnectSocket: () => {
-        if(get().socket?.connected) get.socket.disconnect();
+        if(get().socket?.connected) get().socket.disconnect();
     }
 
 }));

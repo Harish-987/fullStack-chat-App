@@ -1,6 +1,6 @@
 import { create } from "zustand";
-import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
+import { axiosInstance } from "../lib/axios";
 import { useAuthStore } from "./useAuthStore";
 
 export const useChatStore = create((set,get) => ({
@@ -47,9 +47,6 @@ export const useChatStore = create((set,get) => ({
             toast.error(error.response.data.message);
         }
     },
-
-    //whenever we get a message,to update the messages array in real time;
-    //if this is not used then we need to refresh the page to get the new messages from the database
     subscribeToMessages: () => {
         const { selectedUser } = get();
         if(!selectedUser) return;
@@ -62,27 +59,6 @@ export const useChatStore = create((set,get) => ({
             });
         });
     },
-    //alternative
-    //  subscribeToMessages: () => {
-    //   const { selectedUser } = get();
-    //   if (!selectedUser) return;
-
-    //   const socket = useAuthStore.getState().socket;
-    //   socket.on("newMessage", (newMessage) => {
-    //     // Only update messages if it's part of the current conversation
-    //     const isForCurrentChat =
-    //       newMessage.senderId === selectedUser._id ||
-    //       newMessage.recieverId === selectedUser._id;
-
-    //     if (isForCurrentChat) {
-    //       set({
-    //         messages: [...get().messages, newMessage],
-    //       });
-    //     }
-    //   });
-    //  },
-
-
     unsubscribeFromMessages: () => {
         const socket = useAuthStore.getState().socket;
         socket.off("newMessage");

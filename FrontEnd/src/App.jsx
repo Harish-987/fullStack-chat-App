@@ -16,8 +16,6 @@ import { Toaster } from "react-hot-toast";
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
-  console.log("Current Theme in App.jsx:", theme); // Add a log here
-  console.log({ onlineUsers });
 
   useEffect(() => {
     checkAuth();
@@ -33,7 +31,7 @@ const App = () => {
   return (
     // THIS IS THE CRITICAL LINE FOR THEME APPLICATION
     // If classPrefix is "theme-", then use className={`theme-${theme}`}
-    <div className={`theme-${theme}`}>
+    <div data-theme={theme}>
       <Navbar />
 
       <Routes>

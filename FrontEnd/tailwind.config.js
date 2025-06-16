@@ -1,14 +1,13 @@
-// tailwind.config.js
 import daisyui from "daisyui";
 
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
   plugins: [daisyui],
   daisyui: {
-    // Make sure this is correctly configured.
-    // 'true' means all default DaisyUI themes are enabled.
-    // You could also explicitly list your THEMES array if you only want those.
     themes: [
       "light",
       "dark",
@@ -43,9 +42,5 @@ export default {
       "nord",
       "sunset",
     ],
-    // The classPrefix is important.
-    // If you use this, your theme application in App.jsx must be `className="theme-yourtheme"`
-    // If you remove this, it must be `data-theme="yourtheme"`
-    classPrefix: "theme-", // Keep this for now, as it aligns with your theme selection in SettingsPage
   },
 };

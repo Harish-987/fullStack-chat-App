@@ -5,15 +5,20 @@ export const protectRoute = async(req,res,next) => {
     try {
         const token = req.cookies.jwt;
 
-        if(!token) return res.status(401).json({message:"UnAutorized-No Token Provided"});
-
+        if(!token){
+            return res.status(401).json({message:"UnAutorized-No Token Provided"});
+        }
         const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
-        if(!decoded) return res.status(401).json({message:"UnAuthorized-Invalid Token"});
+        if(!decoded){
+             return res.status(401).json({message:"UnAuthorized-Invalid Token"});
+        }
 
         const user = await User.findById(decoded.userId).select("-password");//exclude the password field while extraction
 
-        if(!user) return res.status(404).json({message:"User Not Found"});
+        if(!user){
+             return res.status(404).json({message:"User Not Found"});
+        }
 
         req.user = user;
         next();
@@ -23,4 +28,4 @@ export const protectRoute = async(req,res,next) => {
         console.log("Error in portectRoute",error.message);
         res.status(500).json({message:"Internal Server Error"});
     }
-}
+};
