@@ -8,7 +8,7 @@ export const generateToken = (userId,res) => {
         httpOnly:true,
         // sameSite:"strict",
         sameSite:"none",
-        secure:process.env.NODE_ENV !== "development",
+        // secure:process.env.NODE_ENV !== "development",
     });
     return token;
 }
