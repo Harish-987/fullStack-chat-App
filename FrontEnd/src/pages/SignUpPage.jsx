@@ -35,7 +35,7 @@ const SignUpPage = () => {
 
     const success = validateForm();
 
-    if(success === true ) signup(formData);
+    if(success === true ) signUp(formData);
   };
 
   return (
