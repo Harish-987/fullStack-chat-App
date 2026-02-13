@@ -14,7 +14,7 @@ const SignUpPage = () => {
     password:"",
   });
 
-  const {signup,isSigningUp} = useAuthStore();
+  const {signUp,isSigningUp} = useAuthStore();
 
   const validateForm=()=>{
 
